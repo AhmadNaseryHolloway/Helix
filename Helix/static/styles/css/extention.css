@@ -1,0 +1,85 @@
+.proj_true {background: #cfe2cf;}
+
+.proj_false {background: #ff0066;}
+
+.countbg {background: #cfe2cf;}
+
+.panelbg {background: #fff3cd;}
+
+.border-1 {
+    border-style:solid;
+    border-width: 1px;
+}
+
+.border-3-left {
+    border-left-style:solid;
+    border-width: 3px;
+}
+.border-3-right {
+    border-right-style:solid;
+    border-width: 3px;
+}
+
+.border-2 {
+    border-style:solid;
+    border-width: 2px;
+}
+
+.border-3 {
+    border-style:solid;
+    border-width: 3px;
+}
+
+.border-4 {
+    border-style:solid;
+    border-width: 4px;
+}
+
+.border-5 {
+    border-style:solid;
+    border-width: 5px;
+}
+
+.percent-0 {
+    background: #FC6C85;
+}
+
+.percent-1 {
+    background: linear-gradient(90deg, #FC6C85 10%, #ffffff 0%);
+}
+
+.percent-2 {
+    background: linear-gradient(90deg, #FC94A1 20%, #ffffff 0%);
+}
+
+.percent-3 {
+    background: linear-gradient(90deg, #FC94A1 30%, #ffffff 0%);
+}
+
+.percent-4 {
+    background: linear-gradient(90deg, #FFCCCB 40%, #ffffff 0%);
+}
+
+.percent-5 {
+    background: linear-gradient(90deg, #CDFFCC 50%, #ffffff 0%);
+}
+
+.percent-6 {
+    background: linear-gradient(90deg, #CDFFCC 60%, #ffffff 0%);
+}
+
+.percent-7 {
+    background: linear-gradient(90deg, #B0F5AB 70%, #ffffff 0%);
+}
+
+.percent-8 {
+    background: linear-gradient(90deg, #B0F5AB 80%, #ffffff 0%);
+}
+
+.percent-9 {
+    background: linear-gradient(90deg, #90EF90 90%, #ffffff 0%);
+}
+
+.percent-10 {
+    background: linear-gradient(90deg, #90EF90 100%, #ffffff 0%);
+}

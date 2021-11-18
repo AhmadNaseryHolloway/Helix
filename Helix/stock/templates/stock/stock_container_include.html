@@ -1,0 +1,39 @@
+<div class="container-fluid rounded border-2 border-info">
+    <div class="row bg-light pt-2">
+        <div class="col-xs-12 col-sm-12 col-md-2">
+            <h5>{{ stock.part_Number }}</h5>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2">
+            <h5>{{ stock.description }}</h5>
+        </div>
+    </div>
+    <div class="row pl-2 pb-2 pt-2 pr-2">
+        <div class="col-xs-12 col-sm-12 col-md-5 panelbg rounded panel">
+            <div class="panel-body font-weight-bold">Category: {{ stock.stock_Category }}</div>
+            <div class="panel-body font-weight-bold">Location: {{ stock.stock_Location }}</div>
+            <div class="panel-body font-weight-bold">Manufacturer: {{ stock.stock_Manufacturer }}</div>
+        </div>
+        <div class="col-xs-0 col-sm-1 col-md-2">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-5 panelbg rounded">
+            <div class="panel-body font-weight-bold">Stocked at: {% if stock.stocked_At_Telford %}Telford {% endif %} {% if stock.stocked_At_Notts %}Nottingham{% endif %}</div>
+            <div class="panel-body font-weight-bold">Nottingam: {{ stock.stock_Balance_Notts }}</div>
+            <div class="panel-body font-weight-bold">Telford: {{ stock.stock_Balance_Telford }}</div>
+        </div>
+    </div>
+    <div class="row pl-2 pb-2 pt-2 pr-2">
+        <div class="col-md-12 countbg rounded">
+            <div class="row">
+                <div class="col-sm-12 col-md-2">
+                    <a class="h5">Something</a>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <a class="text-primary pr-1" href="#"><i class="bi bi-pencil-fill"></i> Edit</a>
+                    <a class="text-primary pr-1" href="#"><i class="bi bi-trash text-danger"></i> Delete</a>
+                    <a class="text-primary" href="#"><i class="bi bi-printer"></i> Print Label</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

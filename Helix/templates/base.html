@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="{% static '/scripts/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/styles/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/css/extention.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <title>Holloway</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Holloway</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home:home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'project:project' %}">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Control Panels</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'stock:stock' %}">Stock Items</a>
+              </li>
+          </ul>
+      </nav>
+      <div class="contianer-fluid">
+        {% block body %}
+        {% endblock %}
+      </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% load static %}
+{% block body %}
+<br>
+<br>
+{% for project in project_info %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-0 col-sm-0 col-md-2">
+
+        </div>
+        <div class="col-xs-12 col-sm-10 col-md-8">
+            <div class="container rounded border-3 border-info">
+                <div class="row bg-light pt-2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 pl-4">
+                        <h3>{{ project.project_Number }} Project Task Dashboard</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="row">
+                            <div class="col-12 pl-4">
+                                <a class="btn btn-info btn-sm" href="{% url 'project:project_dashboard' project.project_Number %}"><i class="bi bi-card-checklist"></i> Project Dashboard</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'project:project_task_create' project.project_Number %}"><i class="bi bi-pencil"></i> Add Project Task</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'project:project_task_type_create' project.project_Number %}"><i class="bi bi-pencil"></i> Add Task Type</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'project:project_resource_create' project.project_Number %}"><i class="bi bi-pencil"></i> Add Resource</a>
+                            </div>
+                        </div>
+                        <div class="container-fluid table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-info">
+                                    <tr>
+                                        <th scope="col">Task Type</th>
+                                        <th scope="col">Duration</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">Finish Date</th>
+                                        <th scope="col">Percentage Completed</th>
+                                        <th scope="col">Resource Name</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% include "./project_task_table_dashboard.html" %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

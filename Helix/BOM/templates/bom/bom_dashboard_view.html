@@ -1,0 +1,106 @@
+{% extends "base.html" %} {% load static %} {% load mathfilters %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+            <br>
+            <div class="row pl-2">
+                <div class="col-12">
+                    <a class="pl-3 text-info h3"><i class="bi bi-clipboard-check"></i> BOM Dashboard</a>
+                    <a class="pl-3 text-info h4">Filter Coming soon...</a>
+                </div>
+            </div>
+            <br>
+            <div class="row pl-4">
+                <div class="col-12">
+                    <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'bom:bomtype_create' project_num=project  %}">Add BOM</a>
+                </div>
+            </div>
+            <br>
+            {% for bom_type in bom_type_list %}
+            <div class="row pl-4">
+                <div class="col-12">
+                    <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'project:bom_dashboard' project_num=project bom_ty=bom_type.bom_Type %}">{{ bom_type.bom_Type }}</a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-9 col-lg-8">
+            <br>
+            <div class="row pl-4">
+                <div class="container-fluid border-3 rounded border-info">
+                    <div class="row bg-light pt-2 pb-2">
+                        <div class="col-sm-12 col-md-4 col-lg-2">
+                            <a class="h3">{{ bom_ty }}</a>
+                        </div>
+                        {% if bom_ty != "empty" %}
+                        <div class="col-sm-12 col-md-4 col-lg-2">
+                            <div class="container-fluid">
+                                <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'bom:bom_create' project_num=project bom_type=bom_ty %}">Add Item</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-2">
+                            <div class="container-fluid">
+                                <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'bom:bomtype_update' project_num=project bom_type=bom_ty %}">Edit BOM</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-info">
+                                    <tr>
+                                        <th scope="col">Part Number</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Manufacturer</th>
+                                        <th scope="col">Supplier</th>
+                                        <th scope="col">Total Price</th>
+                                        <th scope="col">Delivery Date</th>
+                                        <th scope="col">Order Number</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sub in sub_sec %}
+                                        <tr>
+                                            <th scope="row" colspan="12" class="bg-info h5 text-center text-white collapsed rounded"  data-toggle="collapse" href="#{{sub|slugify}}-collapse" aria-expanded="false">
+                                                <div class="container-fluid btn btn-info btn-sm rounded">
+                                                    <a class="font-weight-bold text-white h5">{{ sub }}</a>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        {% for bom in bom_info %}
+                                        {% with name=bom.sub_Section %}
+                                            {% if sub == bom.sub_Section %}
+                                                <tr id="{{name|slugify}}-collapse" class="auto-collapse collapse">
+                                                    <th scope="row" class="bg-light">{{ bom.item_Number.part_Number }}</th>
+                                                    <td>{{ bom.quantity }}</td>
+                                                    <td>{{ bom.item_Number.description }}</td>
+                                                    <td>{{ bom.item_Number.stock_Manufacturer }}</td>
+                                                    <td>{{ bom.supplier }}</td>
+                                                    <td>{{ bom.total_Price }}</td>
+                                                    <td>{{ bom.delivery_Date }}</td>
+                                                    <td>{{ bom.order_Number_Unique_ID }}</td>
+                                                    <td><a class="btn btn-block btn-info text-white font-weight-bold">Edit</a></td>
+                                                    <td><a class="btn btn-block btn-danger text-white font-weight-bold">Delete</a></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endwith %}       
+                                        {% endfor %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

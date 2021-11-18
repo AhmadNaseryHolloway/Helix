@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% load static %} {% load mathfilters %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <br>
+            <div class="row pl-2">
+                <a class="pl-3 text-info h3"><i class="bi bi-clipboard-check"></i> Purchase Order Dashboard</a>
+                <a class="pl-3 text-info h4">Filter Coming soon...</a>
+            </div>
+            <br>
+            <div class="row pl-4">
+                <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
+                    {% if purchase_order %}
+                        <a class="text-white font-weight-bold" href="{% url 'po:POCreate' project_num=project_info counter=lastcount %}">Add Purchase Order</a>
+                    {% else %}
+                        <a class="text-white font-weight-bold" href="{% url 'po:POCreate' project_num=project_info counter=1 %}">Add Purchase Order</a>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+            {% for purchase in purchase_order %}
+            <div class="row pl-4">
+                <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
+                    <a class="font-weight-bold text-white" href="{% url 'po:PODashboard' project_num=project_info order_number=purchase.order_Number %}">{{ purchase.order_Number }}</a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <br>
+            <div class="row pl-4">
+                <div class="container-fluid border-3 rounded border-info">
+                    <div class="row bg-light pt-2 pb-2">
+                        <div class="col-2">
+                            <a class="h3">{{ order_number }}</a>
+                        </div>
+                        <div class="col-2">
+                            <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
+                                <a class="font-weight-bold text-white">Edit Purchase Order</a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
+                                <a class="font-weight-bold text-white">Add POLine Item</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-info">
+                                    <tr>
+                                        <th scope="col">Part Number</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Manufacturer</th>
+                                        <th scope="col">Supplier</th>
+                                        <th scope="col">Total Price</th>
+                                        <th scope="col">Net Cost Each ExVAT</th>
+                                        <th scope="col">Quantity Arrived</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for line in po_line_items %}
+                                        <tr>
+                                            <th scope="row" class="bg-light">{{ line.stock_Item.part_Number }}</th>
+                                            <td>{{ line.quantity }}</td>
+                                            <td>{{ line.stock_Item.description }}</td>
+                                            <td>{{ line.stock_Item.stock_Manufacturer }}</td>
+                                            <td>{{ current.supplier }}</td>
+                                            <td>{{ line.line_Total }}</td>
+                                            <td>{{ line.stock_Item.net_Cost_Each }}</td>
+                                            <td><a class="btn btn-block btn-info text-white font-weight-bold" href="#">Edit</a></td>
+                                            <td><a class="btn btn-block btn-danger text-white font-weight-bold" href="#">Delete</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

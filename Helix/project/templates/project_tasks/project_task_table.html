@@ -1,0 +1,25 @@
+{% for sta in stage %}
+    <tr class="collapsed"  data-toggle="collapse" href="#{{sta.stage_Name|slugify}}-collapse" aria-expanded="false">
+        <th colspan="8" class="bg-info rounded h5 text-white"><div class="container-fluid btn btn-info btn-sm text-left">
+            <a class="font-weight-bold text-white h5 font-weight-bold">{{sta.stage_Name}}</a>
+        </div></th>
+    </tr>
+    {% for proj in proj_task %}
+        {% if proj.stage == sta %}
+            <tr id="{{sta.stage_Name|slugify}}-collapse" class="auto-collapse collapse">
+                <th scope="row" class="bg-light">{{ proj.task_Type }}</th>
+                <td>{{ proj.duration }}</td>
+                <td>{{ proj.start_Date }}</td>
+                <td>{{ proj.finish_Date }}</td>
+                {% if proj.percent_Complete != 100 %}
+                <td class="percent-{{ proj.percent_Complete|get_digit:2 }} border-3-left border-3-right border-info">{{ proj.percent_Complete }}</td>
+                {% else %}
+                <td class="percent-10 border-3-left border-3-right border-info">{{ proj.percent_Complete }}</td>
+                {% endif %}
+                <td>{{ proj.resource_Name }}</td>
+                <td><a class="btn btn-block btn-info text-white font-weight-bold">Edit</a></td>
+                <td><a class="btn btn-block btn-danger text-white font-weight-bold">Delete</a></td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
