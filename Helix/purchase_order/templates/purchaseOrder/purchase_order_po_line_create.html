@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block body %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<br>
+<br>
+<div class="row">
+    <div class="col-sm-0 col-md-2">
+
+    </div>
+    <div class="col-sm-12 col-md-8">
+        <div class="container-fluid border-3 border-dark rounded">
+            <br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        {{form.purchase_Order|as_crispy_field}}
+                        <script>
+                            $(document).ready(function() {
+                                $('#id_purchase_Order').select2();
+                            });
+                        </script>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        {{form.stock_Item|as_crispy_field}}
+                        <script>
+                            $(document).ready(function() {
+                                $('#id_stock_Item').select2();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {{form.quantity|as_crispy_field}}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {{form.arrived|as_crispy_field}}
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        {{form.qty_Arrived|as_crispy_field}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        <br>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <a class="btn btn-secondary btn-block text-white" href="{% url 'po:PODashboard' project_num=project_num order_number=order_Number %}">Cancel</a>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

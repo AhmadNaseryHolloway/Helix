@@ -1,5 +1,6 @@
 from django import forms
-from .models import PurchaseOrder
+from django.forms import fields
+from .models import PurchaseOrder, POLineItems
 
 
 class PurchaseOrderCreate(forms.ModelForm):
@@ -13,3 +14,8 @@ class PurchaseOrderCreate(forms.ModelForm):
         data = self.cleaned_data
 
         return data
+
+class POLineItemCreate(forms.ModelForm):
+    class Meta:
+        model = POLineItems
+        fields = '__all__'

@@ -51,7 +51,7 @@ class PurchaseOrder(models.Model):
     order_Notes                 = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return str(self.order_Number) + ' Delivered In Full: ' + str(self.delivered_In_Full)
+        return self.order_Number
     
     class Meta:
         verbose_name_plural = 'Purchase_Orders'
@@ -89,7 +89,7 @@ class po_WithoutProjects(models.Model):
 
 class POLineItems(models.Model):
     item_Number                 = models.IntegerField(blank=True, null=True)
-    quantity                    = models.IntegerField(default=0, null=True)
+    quantity                    = models.FloatField(default=0, null=True)
     net_Cost_Each_ExVAT         = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     line_Total                  = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     purchase_Order              = models.ForeignKey(PurchaseOrder, on_delete=models.PROTECT, blank=True, null=True)
@@ -101,7 +101,7 @@ class POLineItems(models.Model):
     qty_Arrived                 = models.IntegerField(blank=True, default=0, null=True)
 
     def __str__(self):
-        return str(self.purchase_Order) + ' ' + str(self.stock_Item)
+        return self.stock_Item.part_Number
     
     class Meta:
         verbose_name_plural = 'PO_Line_Items'
