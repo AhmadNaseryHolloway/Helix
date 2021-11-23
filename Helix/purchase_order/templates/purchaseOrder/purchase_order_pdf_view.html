@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @page {
+            size: letter portrait;
+            @frame col1_frame {
+                -pdf-frame-content: col1_frame;             /* Content frame 1 */
+                left: 40pt; width: 188pt; top: 20pt; height: 200pt;
+            }
+            @frame col2_frame {
+                -pdf-frame-content: col2_frame;             /* Content frame 2 */
+                left: 368pt; width: 188pt; top: 20pt; height: 200pt;
+            }
+            @frame col3_frame {            /* Content frame 3 */
+                left: 40pt; width: 512pt; top: 240pt; height: 400pt;
+            }
+            @frame footer_frame {           /* Static frame */
+                -pdf-frame-content: footer_content;
+                left: 40pt; width: 512pt; top: 772pt; height: 20pt;
+            }
+        }
+        .border-3 {
+                    border-style:solid;
+                    border-width: 3px;
+                }
+        table, th, td {
+                padding-top: 2px;
+                padding-left: 2px;
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+        th {
+            background-color: #E8E8E8;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div>
+    <div id="col1_frame">
+        <table>
+            <tr>
+                <th colspan="2">
+                    <h5>www.hollowaycontrols.co.uk</h5> 
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <h2>Holloway Controls Systems Ltd</h2>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <h4>Invoice Address:</h4>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Unit 1, Sovereign Park, Halesfield 24,
+                    Telford, Shropshire
+                    TF7 4NZ
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <h4>Contact Details:</h4>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    home: 012952 680385
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    accounts@hollowaycontrols.co.uk
+                </td>
+            </tr> 
+            <tr>
+                <td colspan="2">
+                    info@hollowaycontrols.co.uk
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    The Following numbers must appear on all related corresponfance, 
+                shipping papers and invoices:
+                </td>
+            </tr> 
+            <tr>
+                <td colspan="1">
+                    P.O. Number: 
+                </td>
+                <td colspan="1">
+                    3500-1
+                </td>
+            </tr>  
+        </table>    
+    </div>
+    <div id="col2_frame">
+       <table>
+        <tr>
+            <th colspan="2">
+                <h1>PURCAHSE ORDER</h1>    
+            </th>      
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-bottom: 2px; padding-right: 2px;">
+                <img src="http://localhost:8000/static/images/Hollowaytest.jpg" alt="Failed to Load" width="100%" height="100%"/>    
+            </td>    
+        </tr>
+        <tr>
+            <td colspan="2">
+                Ship To address:
+                <p>Unit 1, Sovereign Park, Halesfield 24,
+                    Telford, Shropshire
+                    TF7 4NZ</p>    
+            </td>    
+        </tr>
+        <tr>
+            <td>
+                FAO:    
+            </td>
+            <td>
+                Holloway Control Systems    
+            </td>    
+        </tr>
+        </table>
+    </div>
+    <table style="width:100%"">
+        <tr>
+            <th>P.O. Date</th>
+            <th>Requisitioner</th>
+            <th>Shipped Via</th>
+            <th>Terms</th> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td> 
+        </tr>    
+    </table>
+</body>
+</html>
+

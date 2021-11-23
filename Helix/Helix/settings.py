@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'time_logs',
     'nottingham',
     'django_filters',
+    'xhtml2pdf',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

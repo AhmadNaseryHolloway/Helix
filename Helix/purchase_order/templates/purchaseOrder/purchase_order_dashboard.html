@@ -36,16 +36,18 @@
                         <div class="col-2">
                             <a class="h3">{{ order_number }}</a>
                         </div>
-                        <div class="col-2">
-                            <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
-                                <a class="font-weight-bold text-white">Edit Purchase Order</a>
-                            </div>
+                        {% if order_number != "empty" %}
+                        <div class="col-sm-12 col-lg-2">                          
+                            <a class="font-weight-bold text-white btn btn-info btn-block">Edit Purchase Order</a> 
                         </div>
-                        <div class="col-2">
-                            <div class="container-fluid border-3 border-info rounded btn btn-info btn-block">
-                                <a class="font-weight-bold text-white">Add POLine Item</a>
-                            </div>
+                        <div class="col-sm-12 col-lg-2">
+                                <a class="font-weight-bold text-white btn btn-info btn-block">Add POLine Item</a>
                         </div>
+                        <div class="col-sm-12 col-lg-2">
+                            <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'po:POPDF' order=order_number %}">View PDF</a>
+                        </div>
+                        {% else %}
+                        {% endif %}
                     </div>
                     <div class="row">
                         <div class="container-fluid table-responsive">

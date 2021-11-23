@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from .filters import ProjectFilter
+from Helix.utlis import render_to_pdf
+from django.http.response import HttpResponse
 
 from purchase_order.models import PurchaseOrder
 
@@ -149,3 +151,19 @@ def project_resource_create_view(request, project_num):
         "project": project_num
         }
     return render(request, "project_tasks/project_resource_name_create_view.html", context)
+
+def project_task_pdf_view(request, project_num, *args, **kwargs):
+    project_info = Project.objects.filter(project_Number=project_num)
+
+    stage = Stage.objects.filter(projecttasks__project_Number=project_num).distinct().order_by('stage_Order')
+    proj_task = ProjectTasks.objects.filter(project_Number=project_num)
+
+    context = {
+        "test": "test",
+        "project_info": project_info,
+        "proj_task": proj_task,
+        "stage": stage,
+    }
+
+    pdf = render_to_pdf('project_tasks/project_tasks_pdf_view.html', context)
+    return HttpResponse(pdf, content_type='application/pdf')
