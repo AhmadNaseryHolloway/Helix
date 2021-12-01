@@ -17,8 +17,8 @@
                 <td class="percent-10 border-3-left border-3-right border-info">{{ proj.percent_Complete }}</td>
                 {% endif %}
                 <td>{{ proj.resource_Name }}</td>
-                <td><a class="btn btn-block btn-info text-white font-weight-bold">Edit</a></td>
-                <td><a class="btn btn-block btn-danger text-white font-weight-bold">Delete</a></td>
+                <td><a class="btn btn-block btn-info text-white font-weight-bold" href="{% url 'project:project_task_update' project_num=proj.project_Number id=proj.id %}">Edit</a></td>
+                <td><a class="btn btn-block btn-danger text-white font-weight-bold" href="{% url 'project:project_task_delete' project_num=proj.project_Number id=proj.id %}">Delete</a></td>
             </tr>
         {% endif %}
     {% endfor %}

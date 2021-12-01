@@ -33,19 +33,15 @@
             <div class="row pl-4">
                 <div class="container-fluid border-3 rounded border-info">
                     <div class="row bg-light pt-2 pb-2">
-                        <div class="col-2">
-                            <a class="h3">{{ order_number }}</a>
+                        <div class="col-1">
+                            <a class="h4">{{ order_number }}</a>
                         </div>
                         {% if order_number != "empty" %}
-                        <div class="col-sm-12 col-lg-2">                          
-                            <a class="font-weight-bold text-white btn btn-info btn-block">Edit Purchase Order</a> 
-                        </div>
-                        <div class="col-sm-12 col-lg-2">
-                                <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'po:POLineItemCreate' project_num=project_info order_number=order_number %}">Add POLine Stock Item</a>
-                        </div>
-                        <div class="col-sm-12 col-lg-2">
-                            <a class="font-weight-bold text-white btn btn-info btn-block" href="{% url 'po:POPDF' order=order_number %}">View PDF</a>
-                        </div>
+                        <div class="col-8">
+                            <a class="font-weight-bold text-white btn btn-info" href="{% url 'po:POUpdate' project_num=project_info order_number=order_number %}">Edit Purchase Order</a>
+                            <a class="font-weight-bold text-white btn btn-info" href="{% url 'po:POLineItemCreate' project_num=project_info order_number=order_number %}">Add POLine Stock Item</a>
+                            <a class="font-weight-bold text-white btn btn-info" href="{% url 'po:POPDF' order=order_number %}">View PDF</a>
+                        </div>  
                         {% else %}
                         {% endif %}
                     </div>

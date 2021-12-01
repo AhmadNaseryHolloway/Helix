@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block body %}
+
+<br>
+<br>
+<div class="row">
+    <div class="col-sm-0 col-md-2">
+
+    </div>
+    <div class="col-sm-12 col-md-8">
+        <div class="container-fluid border-3 border-dark rounded">
+            <br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <p class="text-center"> Are you Sure you want to delete Project:{{ project_task.project_Number }} > {{ project_task.stage }} > {{ project_task.task_Type }} > {{ project_task.resource_Name }}?</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        <br>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <a class="btn btn-secondary btn-block text-white" href="{% url 'project:project_task' project_num=project %}">Cancel</a>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

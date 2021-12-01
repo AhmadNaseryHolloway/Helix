@@ -122,6 +122,35 @@ def project_tasks_create_view(request, project_num):
 
     return render(request, "project_tasks/project_tasks_create_view.html", context)
 
+def project_tasks_update_view(request, project_num, id):
+    obj = ProjectTasks.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProjectTasksCreateForm(request.POST or None, instance=obj)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('/project/dashboard/project_task/' + project_num + '/')
+
+    form = ProjectTasksCreateForm(request.POST or None, instance=obj)
+    context = {
+        "form": form,
+        "project": project_num,
+        }
+
+    return render(request, "project_tasks/project_tasks_update_view.html", context)
+
+def project_tasks_delete_view(request, project_num, id):
+    project_task = ProjectTasks.objects.get(id=id)
+    if request.method == "POST":
+        project_task.delete()
+        return redirect('/project/dashboard/project_task/' + project_num + '/')
+    context = {
+        "project_task" : project_task,
+        "project": project_num,
+        "id": id,
+        }
+
+    return render(request, "project_tasks/project_tasks_delete_view.html", context)
+
 def project_tasks_type_create_view(request, project_num):
     
     if request.method == 'POST':

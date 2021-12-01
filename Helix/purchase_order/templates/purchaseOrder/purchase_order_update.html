@@ -1,0 +1,111 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block body %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<br>
+<br>
+<div class="row">
+    <div class="col-sm-0 col-md-2">
+
+    </div>
+    <div class="col-sm-12 col-md-8">
+        <div class="container-fluid border-3 border-dark rounded">
+            <br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        {{form.order_Number|as_crispy_field}}
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                        {{form.project_Number|as_crispy_field}}
+                        <script>
+                            $(document).ready(function() {
+                                $('#id_project_Number').select2();
+                            });
+                        </script>
+                    </div> 
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-6">
+                                {{form.order_Date|as_crispy_field}}
+                            </div>
+                            <div class="col-6">
+                                {{form.delivery_Required_Date|as_crispy_field}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{form.order_Placed_By|as_crispy_field}}
+                        <script>
+                            $(document).ready(function() {
+                                $('#id_order_Placed_By').select2();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        {{form.delivered_To|as_crispy_field}}
+                    </div>
+                    <div class="col-md-12 col-lg-6 pr-2">
+                        <div class="row">
+                            <div class="col-12">
+                                {{form.supplier|as_crispy_field}}
+                            <script>
+                                $(document).ready(function() {
+                                    $('#id_supplier').select2();
+                                });
+                            </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                {{form.fao|as_crispy_field}}
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                {{form.sales_Tax|as_crispy_field}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{form.terms|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        {{form.instructions|as_crispy_field}}
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{form.order_Notes|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a class="h5 text-center">*Optional: Add a description of this order ---Notes are NOT printed on a Purchase Order - for internal Use</a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        <br>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <a class="btn btn-secondary btn-block text-white" href="{% url 'po:PODashboard' project_num=project_info order_number=order_Num %}">Cancel</a>
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

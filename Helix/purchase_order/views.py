@@ -45,6 +45,25 @@ def purchase_order_create(request, project_num, counter, *args, **kwargs):
     }
     return render(request, "purchaseOrder/purchase_order_create.html", context)
 
+def purchase_order_update(request, project_num, order_number, *args, **kwargs):
+    obj = PurchaseOrder.objects.get(order_Number=order_number)
+
+    if request.method == 'POST':
+        form = PurchaseOrderCreate(request.POST or None)
+        if form.is_valid():
+            objx = form.save()
+            return redirect('/purchaseorder/dashboard/' + project_num + '/' + objx.order_Number)
+        else:
+            print(form.errors)
+
+    form = PurchaseOrderCreate(request.POST or None, instance=obj)
+    context = {
+        "form": form,
+        "project_info": project_num,
+        "order_Num": order_number,
+    }
+    return render(request, "purchaseOrder/purchase_order_update.html", context)
+
 def purchase_order_po_line_create(request, project_num, order_number, *args, **kwargs):
     initialarr = {'purchase_Order': order_number}
 
