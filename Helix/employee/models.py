@@ -1,5 +1,8 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.base import Model
+from django.db.models.deletion import CASCADE, PROTECT
+from django.db.models.expressions import F
 
 # Create your models here.
 
@@ -78,3 +81,21 @@ class Contractors(models.Model):
 
     class Meta:
         verbose_name_plural = 'Contractors'
+
+class TimeType(models.Model):
+    name                        = models.CharField(max_length=120, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+class Schedule(models.Model):
+    id                          = models.AutoField(primary_key=True)
+    employee                    = models.ForeignKey(Employee, on_delete=CASCADE, null=True)
+    time_Type                   = models.ForeignKey(TimeType, on_delete=PROTECT, null=True)
+    holiday                     = models.BooleanField(default=False, null=True)
+    start_Date                  = models.DateField(null=True)
+    end_Date                    = models.DateField(null=True)
+    start_Time                  = models.TimeField(blank=True, null=True)
+    end_Time                    = models.TimeField(blank=True, null=True)
+    weekend                     = models.BooleanField(default=False, null=True)
+    reason                      = models.CharField(max_length=120, blank=True, null=True)
